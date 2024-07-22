@@ -9,6 +9,7 @@ pipeline {
 
 		stage('OWASP DependencyCheck') {
 			steps {
+				withCredentials([string(credentialsId: 'NVD_API_KEY', variable: 'NVD_API_KEY')]) {
 				dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
 			}
 		}
